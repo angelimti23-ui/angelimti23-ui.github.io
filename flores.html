@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Flores digitales flotantes para Leslie - Un jardín virtual de amor">
+  <title>Flores para Leslie</title>
+  <link rel="stylesheet" href="flores.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+</head>
+<body>
+  <div class="message">
+<h1>Leslie, mi jardín de primavera💐</h1>
+<p>Como estas flores que danzan hacia el cielo, mis sentimientos por ti crecen sin límites. Cada pétalo lleva grabado un "te amo" que mi corazón susurra en silencio.</p>
+  </div>
+
+  <a href="final.html" class="next-button">→</a>
+
+  <div class="flower-container" id="flower-container"></div>
+  
+  <!-- Partículas doradas de fondo -->
+  <div class="golden-particles" id="golden-particles">
+    <!-- Las partículas se generarán dinámicamente -->
+  </div>
+
+  <audio id="musica" loop preload="auto">
+    <source src="videoplayback.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+  
+  <script src="flores.js"></script>
+
+  <script>
+    // Crear partículas doradas de fondo
+    function createGoldenParticles() {
+      const particlesContainer = document.getElementById('golden-particles');
+      const numberOfParticles = 20;
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('golden-particle');
+        
+        // Posición aleatoria
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = Math.random() * 100 + 'vh';
+        
+        // Delay aleatorio para la animación
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        
+        // Duración aleatoria
+        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Efecto de entrada suave para el mensaje
+    window.addEventListener('load', () => {
+      createGoldenParticles();
+      
+      const message = document.querySelector('.message');
+      message.style.opacity = '0';
+      message.style.transform = 'translateY(-40px)';
+      
+      setTimeout(() => {
+        message.style.transition = 'all 1.2s ease-out';
+        message.style.opacity = '1';
+        message.style.transform = 'translateY(0)';
+      }, 300);
+    });
+
+    // Continuidad de música
+    window.addEventListener("load", () => {
+      const musica = document.getElementById("musica");
+      
+      if (musica) {
+        musica.volume = 0.6; // Volumen más suave para esta sección
+        
+        if (document.referrer && document.referrer.includes(window.location.hostname)) {
+          const playPromise = musica.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Si falla, no hace nada
+            });
+          }
+        }
+      }
+    });
+
+    // Crear efecto especial al hacer click en el mensaje
+    document.querySelector('.message').addEventListener('click', () => {
+      // Crear una explosión de flores especiales
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const container = document.getElementById('flower-container');
+          const flower = document.createElement('div');
+          flower.classList.add('flower', `variant-${Math.floor(Math.random() * 4) + 1}`);
+          
+          // Crear pétalos especiales
+          for (let j = 1; j <= 8; j++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal', `petal${j}`);
+            flower.appendChild(petal);
+          }
+          
+          // Crear centro especial
+          const center = document.createElement('div');
+          center.classList.add('center');
+          flower.appendChild(center);
+          
+          // Posición especial desde el centro
+          flower.style.left = (45 + Math.random() * 10) + 'vw';
+          flower.style.bottom = '0';
+          flower.style.animationDuration = (Math.random() * 3 + 5) + 's';
+          flower.style.fontSize = (Math.random() * 10 + 25) + 'px';
+          
+          container.appendChild(flower);
+          
+          setTimeout(() => {
+            if (flower.parentNode) {
+              flower.remove();
+            }
+          }, 8000);
+        }, i * 100);
+      }
+    });
+  </script>
+</body>
+</html>

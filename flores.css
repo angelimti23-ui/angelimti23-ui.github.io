@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* Variables para consistencia */
+:root {
+  --color-primary: #5d4037;
+  --color-accent: #ff9800;
+  --color-petal: #ffeb3b;
+  --background-gradient: linear-gradient(135deg, #fff9c4 0%, #fff3a0 100%);
+  --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Fondo y texto */
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background-gradient);
+  overflow: hidden;
+  font-family: 'Dancing Script', cursive;
+  height: 100vh;
+  position: relative;
+}
+
+/* Patrón sutil de fondo */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 235, 59, 0.1) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(255, 152, 0, 0.1) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.message {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  color: var(--color-primary);
+  z-index: 10;
+  animation: messageFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes messageFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+.message h1 {
+  font-size: clamp(2em, 6vw, 3.5em);
+  margin: 0.2em;
+  font-weight: 700;
+  text-shadow: 2px 2px 8px rgba(93, 64, 55, 0.2);
+  background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.message p {
+  font-size: clamp(1.2em, 4vw, 2em);
+  margin-top: 0;
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgba(93, 64, 55, 0.1);
+}
+
+/* Contenedor de flores */
+.flower-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Flor base mejorada */
+.flower {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  animation: floatUp 10s ease-out forwards;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Estilos mejorados de pétalos */
+.petal {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--color-petal);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+/* Variaciones de colores para pétalos */
+.flower.variant-1 .petal { background: #ffeb3b; }
+.flower.variant-2 .petal { background: #ffc107; }
+.flower.variant-3 .petal { background: #ff9800; }
+.flower.variant-4 .petal { background: #fff59d; }
+
+/* Pétalos colocados en forma de flor */
+.petal1 { 
+  top: -2px; 
+  left: 12px; 
+  transform: rotate(0deg);
+}
+.petal2 { 
+  top: 12px; 
+  left: -2px; 
+  transform: rotate(90deg);
+}
+.petal3 { 
+  top: 12px; 
+  left: 28px; 
+  transform: rotate(-90deg);
+}
+.petal4 { 
+  top: 28px; 
+  left: 12px; 
+  transform: rotate(180deg);
+}
+
+/* Pétalos diagonales para flor más completa */
+.petal5 { 
+  top: 4px; 
+  left: 4px; 
+  transform: rotate(45deg);
+}
+.petal6 { 
+  top: 4px; 
+  left: 24px; 
+  transform: rotate(-45deg);
+}
+.petal7 { 
+  top: 24px; 
+  left: 4px; 
+  transform: rotate(135deg);
+}
+.petal8 { 
+  top: 24px; 
+  left: 24px; 
+  transform: rotate(-135deg);
+}
+
+/* Centro de la flor mejorado */
+.center {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, var(--color-accent), #f57c00);
+  border-radius: 50%;
+  top: 17px;
+  left: 17px;
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+}
+
+/* Animación mejorada: desde abajo hacia arriba */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10vh) rotate(20deg) scale(1);
+  }
+  50% {
+    transform: translateY(-50vh) rotate(180deg) scale(1.1);
+    opacity: 0.9;
+  }
+  90% {
+    transform: translateY(-100vh) rotate(340deg) scale(0.9);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.next-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: rgba(255, 193, 7, 0.95);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 28px;
+  padding: 15px 20px;
+  border-radius: 50px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  z-index: 20;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.next-button:hover {
+  background: rgba(255, 193, 7, 1);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+  border-color: var(--color-accent);
+}
+
+#btnMusica {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  background: linear-gradient(45deg, #ff66b2, #e91e63);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: var(--transition);
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+#btnMusica:hover {
+  background: linear-gradient(45deg, #e60073, #c2185b);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Partículas doradas flotantes */
+.golden-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.golden-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatGently 6s infinite ease-in-out;
+}
+
+@keyframes floatGently {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .message {
+    top: 20%;
+  }
+  
+  .message h1 {
+    font-size: 2.5em;
+  }
+  
+  .message p {
+    font-size: 1.4em;
+    padding: 0 20px;
+  }
+  
+  .next-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    font-size: 24px;
+  }
+  
+  #btnMusica {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .message h1 {
+    font-size: 2em;
+  }
+  
+  .message p {
+    font-size: 1.2em;
+  }
+}

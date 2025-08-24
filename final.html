@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Final feliz - Una declaración de amor especial">
+  <title>Final Feliz 💖</title>
+  <link rel="stylesheet" href="final.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+</head>
+<body>
+  <h1>Te amo Leslie 💕</h1>
+  <p>Gracias por estar en mi vida. Eres mi alegría, mi sol, mi todo. 🌞</p>
+
+  <div class="love-animation">
+    <!-- Aquí caerán las palabras "I LOVE YOU" -->
+  </div>
+
+  <!-- Partículas de fondo -->
+  <div class="particles" id="particles-container">
+    <!-- Las partículas se generarán dinámicamente -->
+  </div>
+
+  <a href="inicio.html" class="btn-home">🏠 Inicio</a>
+  
+  <audio id="musica" loop preload="auto">
+    <source src="Mark Ambor- Belong Together (mp3cut.net).mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+  
+  <script src="final.js"></script>
+
+  <script>
+    // Crear partículas de fondo
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles-container');
+      const numberOfParticles = 15;
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Posición aleatoria
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = Math.random() * 100 + 'vh';
+        
+        // Delay aleatorio para la animación
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        
+        // Duración aleatoria
+        particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Efecto de entrada suave
+    window.addEventListener('load', () => {
+      createParticles();
+      
+      const title = document.querySelector('h1');
+      const paragraph = document.querySelector('p');
+      
+      title.style.opacity = '0';
+      paragraph.style.opacity = '0';
+      title.style.transform = 'translateY(-30px)';
+      paragraph.style.transform = 'translateY(-20px)';
+      
+      setTimeout(() => {
+        title.style.transition = 'all 1s ease-out';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+        
+        setTimeout(() => {
+          paragraph.style.transition = 'all 0.8s ease-out';
+          paragraph.style.opacity = '1';
+          paragraph.style.transform = 'translateY(0)';
+        }, 300);
+      }, 500);
+    });
+
+    // Continuidad de música
+    window.addEventListener("load", () => {
+      const musica = document.getElementById("musica");
+      
+      if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        const playPromise = musica.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Si falla, no hace nada
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

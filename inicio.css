@@ -1,0 +1,453 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* Variables para consistencia */
+:root {
+  --color-primary: #ff69b4;
+  --color-secondary: #ff1493;
+  --color-accent: #ffc0cb;
+  --background-gradient: linear-gradient(135deg, #ffe0f0 0%, #ffc0cb 100%);
+  --shadow-main: 0 0 20px rgba(255, 105, 180, 0.5);
+  --transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  background: var(--background-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Patrón sutil de fondo */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 25% 25%, rgba(255, 192, 203, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+h1 {
+  font-size: clamp(2.5em, 8vw, 4em);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.3);
+  margin-bottom: 1rem;
+  text-align: center;
+  z-index: 5;
+  position: relative;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% {
+    text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.3);
+  }
+  100% {
+    text-shadow: 2px 2px 15px rgba(255, 105, 180, 0.6);
+  }
+}
+
+p {
+  font-size: clamp(1.2em, 4vw, 1.8em);
+  color: var(--color-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 5;
+  position: relative;
+  font-weight: 500;
+}
+
+.pantalla-inicial {
+  text-align: center;
+  z-index: 5;
+  position: relative;
+}
+
+#botonAbrir {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: clamp(18px, 4vw, 24px);
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: var(--shadow-main);
+  transition: var(--transition);
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+#botonAbrir::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+#botonAbrir:hover::before {
+  left: 100%;
+}
+
+#botonAbrir:hover {
+  background: linear-gradient(45deg, var(--color-secondary), #c2185b);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+}
+
+.carta-y-pastel {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  z-index: 5;
+  position: relative;
+}
+
+.carta {
+  background: rgba(255, 240, 245, 0.95);
+  border: 2px dashed var(--color-primary);
+  padding: 30px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-main);
+  backdrop-filter: blur(10px);
+  font-size: clamp(1em, 3vw, 1.2em);
+  line-height: 1.6;
+}
+
+/* Pastel centrado y bonito */
+.cake {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  margin: 80px auto 100px auto; /* Más espacio abajo para separarlo de botones */
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  border-radius: 15px;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.layer1 {
+  top: 0;
+  height: 55px;
+  background: linear-gradient(135deg, #ffb3d1, #ffc0cb);
+}
+
+.layer2 {
+  top: 60px;
+  height: 65px;
+  background: linear-gradient(135deg, #ff8fab, #ff69b4);
+}
+
+.layer3 {
+  top: 130px;
+  height: 70px;
+  background: linear-gradient(135deg, #f06292, #e91e63);
+}
+
+/* Velas centradas perfectamente */
+.candle {
+  position: absolute;
+  top: -45px;
+  width: 12px;
+  height: 35px;
+  background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Centrar las velas perfectamente en el pastel */
+.candle:nth-child(1) { left: calc(50% - 60px); } /* Izquierda */
+.candle:nth-child(2) { left: calc(50% - 6px); }  /* Centro */
+.candle:nth-child(3) { left: calc(50% + 48px); } /* Derecha */
+
+/* Llamas más bonitas */
+.flame {
+  position: absolute;
+  top: -20px;
+  left: -6px;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(
+    ellipse 50% 70% at 50% 80%,
+    #ffeb3b 0%,
+    #ffc107 40%,
+    #ff9800 70%,
+    #f44336 90%
+  );
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: beautifulFlicker 1s infinite alternate;
+  box-shadow: 0 0 12px rgba(255, 235, 59, 0.4);
+}
+
+@keyframes beautifulFlicker {
+  0% { 
+    transform: scale(1) rotate(-1deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.05) rotate(1deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(0.95) rotate(-0.5deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.1) rotate(0.5deg);
+    opacity: 0.85;
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.95;
+  }
+}
+
+/* Llama animada mejorada */
+.flame {
+  position: absolute;
+  top: -18px;
+  left: -4px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(ellipse at center, #ffeb3b 0%, #ff9800 40%, #f44336 80%);
+  border-radius: 50%;
+  animation: flicker 0.5s infinite alternate;
+  box-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
+}
+
+@keyframes flicker {
+  0% { 
+    transform: scale(1) rotate(-1deg);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(1.1) rotate(1deg);
+    opacity: 0.8;
+  }
+}
+
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  z-index: 5;
+  position: relative;
+}
+
+.buttons button {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: clamp(14px, 3vw, 18px);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.buttons button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.buttons button:hover::before {
+  left: 100%;
+}
+
+.buttons button:hover {
+  background: linear-gradient(45deg, var(--color-secondary), #c2185b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+.btn-ir {
+  display: inline-block;
+  margin-top: 30px;
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: clamp(16px, 3vw, 20px);
+  border-radius: 30px;
+  box-shadow: var(--shadow-main);
+  transition: var(--transition);
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ir::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-ir:hover::before {
+  left: 100%;
+}
+
+.btn-ir:hover {
+  background: linear-gradient(45deg, var(--color-secondary), #c2185b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.iloveyou-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.iloveyou-word {
+  position: absolute;
+  top: -40px;
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  font-size: clamp(20px, 4vw, 32px);
+  user-select: none;
+  animation-name: caer;
+  animation-timing-function: ease-in-out;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(-40px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+#btnMusica {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(45deg, #ff66b2, #e91e63);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  transition: var(--transition);
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+#btnMusica:hover {
+  background: linear-gradient(45deg, #e60073, #c2185b);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cake {
+    width: 200px;
+    height: 150px;
+  }
+  
+  .carta {
+    padding: 20px;
+    margin: 15px;
+  }
+  
+  .buttons {
+    gap: 10px;
+  }
+  
+  .buttons button {
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cake {
+    width: 180px;
+    height: 130px;
+  }
+  
+  .layer1 { height: 45px; }
+  .layer2 { height: 55px; top: 40px; }
+  .layer3 { height: 60px; top: 90px; }
+  
+  .candle {
+    width: 10px;
+    height: 30px;
+  }
+  
+  .candle:nth-child(1) { left: 55px; }
+  .candle:nth-child(2) { left: 90px; }
+  .candle:nth-child(3) { left: 125px; }
+}

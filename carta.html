@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Una carta de amor especial para Leslie">
+  <title>Carta para Leslie</title>
+  <link rel="stylesheet" href="carta.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+</head>
+<body>
+  <section class="carta">
+    <h1>Mi amor Leslie ❤️</h1>
+    
+    <p>Hola Leslie,</p>
+
+    <p>Ya cumplimos más de 6 meses juntos, y aunque parece poco tiempo, para mí ha sido suficiente para darme cuenta de lo especial que eres. Desde que te vi por primera vez en la universidad, aunque sólo fueron unos días compartiendo el mismo salón antes de que me cambiaran, supe que había algo diferente en ti.</p>
+
+    <p>Recuerdo que cada vez que estábamos en el mismo salón, no podía evitar quedarme mirándote, y bueno... también recuerdo cantarte esa canción cada que coincidíamos: <em>"Quizá no fue coincidencia encontrarme contigo, tal vez esto lo hizo el destino"</em>. Sé que era medio cursi, pero en el fondo, era mi forma de decir que quería que fueras mi destino, que quería que estuvieras en mi vida.</p>
+
+    <p>Uno de los momentos que más guardo en mi corazón fue cuando nos quedamos atrapados en la escuela por la lluvia. Ese día, cuando te invité a comer, sentí que nos acercamos mucho más. Me contaste cosas muy personales, cosas que no cualquiera comparte tan fácilmente, y me sentí honrado por la confianza que me diste. Fue un momento perfecto, simple, pero lleno de significado.</p>
+
+    <p>Admiro muchas cosas de ti, pero tengo que confesar que tus ojos tienen un magnetismo que me atrapa cada vez que los miro, y bueno, tus piernas... digamos que también llaman bastante mi atención. Pero más allá de lo físico, admiro tu forma de ser, tu valentía para confiar y tu forma de hacerme sonreír incluso en días difíciles.</p>
+
+    <p>Sé que nos gustaría viajar a Japón juntos algún día. Imagino que caminaremos por esas calles iluminadas, probando comida nueva, riendo y creando recuerdos que nos acompañarán siempre. Me emociona pensar en ese futuro que podemos construir juntos, con aventuras y momentos simples que se vuelven inolvidables.</p>
+
+    <p>Gracias por estar en mi vida, por confiar en mí, por ser esa persona que ilumina mis días y me hace querer ser mejor. No sé qué más decir, solo que te quiero, con la tranquilidad de saber que esto es real y que cada día a tu lado es un regalo.</p>
+
+    <p>Con cariño,<br />Sam</p>
+
+    <a href="carrusel.html" class="btn-ir">Ver recuerdos 📸</a>
+  
+  </section>
+
+  <!-- Audio silencioso para continuidad -->
+  <audio id="musica" loop>
+    <source src="Elvis_Presley_-_-_Cant_Help_Falling_In_Love.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Continuidad de música si viene de otra página
+    window.addEventListener("load", () => {
+      const musica = document.getElementById("musica");
+      
+      // Solo intenta reproducir si el usuario ya interactuó con el sitio
+      if (document.referrer && document.referrer.includes(window.location.hostname)) {
+        musica.play().catch(() => {
+          // Si falla, no hace nada
+        });
+      }
+    });
+
+    // Animación sutil de aparición para párrafos
+    window.addEventListener("load", () => {
+      const paragraphs = document.querySelectorAll("p");
+      paragraphs.forEach((p, index) => {
+        p.style.opacity = "0";
+        p.style.transform = "translateY(10px)";
+        p.style.transition = "all 0.6s ease";
+        
+        setTimeout(() => {
+          p.style.opacity = "1";
+          p.style.transform = "translateY(0)";
+        }, index * 100 + 300);
+      });
+    });
+  </script>
+</body>
+</html>
